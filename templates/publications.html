@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - The Zuhause Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <header class="text-black mt-10 flex gap-2">
+            <img class="h-11" src="https://cdn-icons-png.flaticon.com/512/3740/3740762.png"
+                alt="The Zuhause Project">
+            <h1 id="title" class="text-2xl mt-2 font-bold">The Zuhause Project</h1>
+        </header>
+
+        <!-- Subtitle -->
+        <h1 class="mt-10 text-pretty text-4xl font-semibold tracking-tight text-gray-900 mb-6">
+            Explore our curated publications on housing and social inequality.
+        </h1>
+
+        <!-- Publications Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
+            {% for pub in publications %}
+            <div class="bg-white shadow-md rounded-lg p-5">
+                <h2 class="text-xl font-semibold text-blue-800">{{ pub.title }}</h2>
+                <p class="text-sm text-gray-500 mt-1">Published: {{ pub.date }}</p>
+                <p class="text-sm text-gray-500">Source: {{ pub.source }}</p>
+                <p class="text-sm text-gray-500">Author: {{ pub.author }}</p>
+                <a href="{{ pub.link }}" class="mt-4 inline-block text-indigo-600 hover:text-indigo-800 font-semibold text-sm">Read more</a>
+            </div>
+            {% endfor %}
+        </div>
+            <!-- Add more publication cards here -->
+        </div>
+    </div>
+</body>
+</html>
