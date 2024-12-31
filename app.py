@@ -29,6 +29,10 @@ def impact():
 def challenges():
     return render_template('challenges.html')
 
+@app.route('/card')
+def card():
+    return render_template('card.html')
+
 @app.route('/join-movement')
 def join_movement():
     return render_template('join_movement.html')
