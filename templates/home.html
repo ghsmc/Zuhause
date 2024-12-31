@@ -70,11 +70,9 @@
             </div>
       <!-- Links -->
       <div class="hidden md:flex space-x-6 font-semibold text-pretty ">
-        <a href="/" class="hover:text-gray-200">Home</a>
+        <a href="/analytics?town=Altstadt-Ost" class="hover:text-gray-200">Analytics</a>
         <a href="/history" class="hover:text-gray-200">History</a>
-        <a href="/blog" class="hover:text-gray-200">Blog</a>
-        <a href="/directory" class="hover:text-gray-200">Full Directory</a>
-        <a href="/impact" class="hover:text-gray-200">Analytics</a>
+        <a href="#blog" class="hover:text-gray-200">Blog</a>
         <a href="/research" class="hover:text-gray-200">Economic Research</a>
         <a href="/publications" class="hover:text-gray-200">Publications & Work</a>
       </div>
@@ -92,7 +90,7 @@
 
     <div class="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20">
       <div class="mx-auto max-w-7xl pb-24 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-20">
-        <div class="px-6 lg:px-0 lg:pt-4">
+        <div class="lg:pt-4">
           <div class="mx-auto max-w-2xl">
             <div class="max-w-lg">
               <header class="text-black flex gap-2">
@@ -108,28 +106,300 @@
                 A solution to Vienna's housing problems that puts socioeconomic and racial equality
                 first. </h1>
               <div class="mt-10 flex items-center gap-x-6">
-                <button
-                  class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  onclick="window.location.href='/analytics'">Zuhause Analytics</button>
+                              <select id="town-search" class="w-full border bg-indigo-600 p-4 px-4 py-2 rounded-lg"></select>
+
+                          
+                          <!DOCTYPE html>
+                  <html lang="en">
+                  <head>
+                      <meta charset="UTF-8">
+                      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                      <title>Zahause Analytics</title>
+                      <script src="https://cdn.tailwindcss.com"></script>
+                      <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+                      <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+                  </head>
+                  <body class="bg-gray-100 text-gray-800">
+                      
+                  
+                      <script>
+                          // Example list of towns (Replace this with an API call if needed)
+                          const towns = [
+                    { value: "Altstadt-Ost", text: "Altstadt-Ost" },
+                    { value: "Stubenviertel", text: "Stubenviertel" },
+                    { value: "Opernviertel", text: "Opernviertel" },
+                    { value: "Regierungsviertel", text: "Regierungsviertel" },
+                    { value: "Börseviertel", text: "Börseviertel" },
+                    { value: "Altstadt-West", text: "Altstadt-West" },
+                    { value: "Altstadt-Mitte", text: "Altstadt-Mitte" },
+                    { value: "Nordbahnhof", text: "Nordbahnhof" },
+                    { value: "Am Tabor", text: "Am Tabor" },
+                    { value: "Augartenviertel", text: "Augartenviertel" },
+                    { value: "Taborstraße", text: "Taborstraße" },
+                    { value: "Praterstraße", text: "Praterstraße" },
+                    { value: "Oberer Prater", text: "Oberer Prater" },
+                    { value: "Ausstellungsstraße", text: "Ausstellungsstraße" },
+                    { value: "Unterer Prater", text: "Unterer Prater" },
+                    { value: "Praterlände", text: "Praterlände" },
+                    { value: "Weißgerber", text: "Weißgerber" },
+                    { value: "Landstraße", text: "Landstraße" },
+                    { value: "Belvedere-Diplomatenviertel", text: "Belvedere-Diplomatenviertel" },
+                    { value: "Fasangasse", text: "Fasangasse" },
+                    { value: "Rudolfspital-Rennwegkaserne", text: "Rudolfspital-Rennwegkaserne" },
+                    { value: "Erdberg", text: "Erdberg" },
+                    { value: "Erdberger Mais-St. Marx", text: "Erdberger Mais-St. Marx" },
+                    { value: "Arsenal", text: "Arsenal" },
+                    { value: "Ungargasse", text: "Ungargasse" },
+                    { value: "Altes Gaswerk", text: "Altes Gaswerk" },
+                    { value: "Wildganshof", text: "Wildganshof" },
+                    { value: "Technische Hochschule", text: "Technische Hochschule" },
+                    { value: "Argentinierstraße", text: "Argentinierstraße" },
+                    { value: "Wiedner Hauptstraße", text: "Wiedner Hauptstraße" },
+                    { value: "Schaumburgergrund", text: "Schaumburgergrund" },
+                    { value: "Margaretenplatz", text: "Margaretenplatz" },
+                    { value: "Matzleinsdorf", text: "Matzleinsdorf" },
+                    { value: "Siebenbrunnenplatz", text: "Siebenbrunnenplatz" },
+                    { value: "Am Hundsturm", text: "Am Hundsturm" },
+                    { value: "Laimgrube", text: "Laimgrube" },
+                    { value: "Mollardgasse", text: "Mollardgasse" },
+                    { value: "Stumpergasse", text: "Stumpergasse" },
+                    { value: "St. Ulrich", text: "St. Ulrich" },
+                    { value: "Stiftskaserne", text: "Stiftskaserne" },
+                    { value: "Apollogasse", text: "Apollogasse" },
+                    { value: "Schottenfeld", text: "Schottenfeld" },
+                    { value: "Neustiftgasse", text: "Neustiftgasse" },
+                    { value: "Laudongasse", text: "Laudongasse" },
+                    { value: "Josefstädter Straße", text: "Josefstädter Straße" },
+                    { value: "Bennoplatz", text: "Bennoplatz" },
+                    { value: "Lichtental-Spittelau", text: "Lichtental-Spittelau" },
+                    { value: "Roßau", text: "Roßau" },
+                    { value: "Allgemeines Krankenhaus", text: "Allgemeines Krankenhaus" },
+                    { value: "Nußdorfer Straße-Volksoper", text: "Nußdorfer Straße-Volksoper" },
+                    { value: "Liechtensteinstraße", text: "Liechtensteinstraße" },
+                    { value: "Universitätsviertel", text: "Universitätsviertel" },
+                    { value: "Südbahnhof", text: "Südbahnhof" },
+                    { value: "Gellertplatz", text: "Gellertplatz" },
+                    { value: "Hebbelplatz", text: "Hebbelplatz" },
+                    { value: "Quellenplatz", text: "Quellenplatz" },
+                    { value: "Arthaberplatz", text: "Arthaberplatz" },
+                    { value: "Erlachplatz", text: "Erlachplatz" },
+                    { value: "Belgradplatz", text: "Belgradplatz" },
+                    { value: "Triester Straße", text: "Triester Straße" },
+                    { value: "Franz Josef-Spital", text: "Franz Josef-Spital" },
+                    { value: "Neerwindenplatz-Raxstraße", text: "Neerwindenplatz-Raxstraße" },
+                    { value: "Heuberggstätten", text: "Heuberggstätten" },
+                    { value: "Siedlung Wienerfeld", text: "Siedlung Wienerfeld" },
+                    { value: "Per Albin Hansson-Nordwest", text: "Per Albin Hansson-Nordwest" },
+                    { value: "Laaer Berg", text: "Laaer Berg" },
+                    { value: "Goldberg", text: "Goldberg" },
+                    { value: "Unterlaa", text: "Unterlaa" },
+                    { value: "Oberlaa", text: "Oberlaa" },
+                    { value: "Rothneusiedl", text: "Rothneusiedl" },
+                    { value: "Per Albin Hansson-Ost", text: "Per Albin Hansson-Ost" },
+                    { value: "Wienerberger Ziegelfabrik", text: "Wienerberger Ziegelfabrik" },
+                    { value: "Humboldtplatz", text: "Humboldtplatz" },
+                    { value: "Eisenstadtplatz", text: "Eisenstadtplatz" },
+                    { value: "Gaswerk Simmering", text: "Gaswerk Simmering" },
+                    { value: "Alt-Simmering", text: "Alt-Simmering" },
+                    { value: "Enkplatz", text: "Enkplatz" },
+                    { value: "Geiselberg", text: "Geiselberg" },
+                    { value: "Hasenleiten", text: "Hasenleiten" },
+                    { value: "Zentralfriedhof", text: "Zentralfriedhof" },
+                    { value: "Obere Simmeringer Haide", text: "Obere Simmeringer Haide" },
+                    { value: "Untere Simmeringer Haide", text: "Untere Simmeringer Haide" },
+                    { value: "Leberberg", text: "Leberberg" },
+                    { value: "Kaiser-Ebersdorf", text: "Kaiser-Ebersdorf" },
+                    { value: "Albern", text: "Albern" },
+                    { value: "Simmeringer Bad", text: "Simmeringer Bad" },
+                    { value: "Gaudenzdorf", text: "Gaudenzdorf" },
+                    { value: "Fuchsenfeld", text: "Fuchsenfeld" },
+                    { value: "Meidlinger Friedhof", text: "Meidlinger Friedhof" },
+                    { value: "Wilhelmsdorf", text: "Wilhelmsdorf" },
+                    { value: "Meidlinger Hauptstraße", text: "Meidlinger Hauptstraße" },
+                    { value: "Tivoligasse", text: "Tivoligasse" },
+                    { value: "Gatterhölzl", text: "Gatterhölzl" },
+                    { value: "Oswaldgasse", text: "Oswaldgasse" },
+                    { value: "Am Schöpfwerk", text: "Am Schöpfwerk" },
+                    { value: "Altmannsdorf", text: "Altmannsdorf" },
+                    { value: "Hetzendorf", text: "Hetzendorf" },
+                    { value: "Schönbrunn", text: "Schönbrunn" },
+                    { value: "Hietzing", text: "Hietzing" },
+                    { value: "Auhofstraße", text: "Auhofstraße" },
+                    { value: "Ober St. Veit", text: "Ober St. Veit" },
+                    { value: "Gemeindeberg-Jagdschlossgasse", text: "Gemeindeberg-Jagdschlossgasse" },
+                    { value: "Lainz", text: "Lainz" },
+                    { value: "Maxing", text: "Maxing" },
+                    { value: "Speising", text: "Speising" },
+                    { value: "Altersheim Lainz", text: "Altersheim Lainz" },
+                    { value: "Lainzer Tiergarten", text: "Lainzer Tiergarten" },
+                    { value: "Friedensstadt", text: "Friedensstadt" },
+                    { value: "Breitensee", text: "Breitensee" },
+                    { value: "An der Windmühle", text: "An der Windmühle" },
+                    { value: "Penzing", text: "Penzing" },
+                    { value: "Unter-Baumgarten", text: "Unter-Baumgarten" },
+                    { value: "Am Ameisbach", text: "Am Ameisbach" },
+                    { value: "Ober-Baumgarten", text: "Ober-Baumgarten" },
+                    { value: "Hugo Breitner-Hof", text: "Hugo Breitner-Hof" },
+                    { value: "Baumgartner Friedhof-Flötzersteig", text: "Baumgartner Friedhof-Flötzersteig" },
+                    { value: "Am Steinhof", text: "Am Steinhof" },
+                    { value: "Hütteldorf", text: "Hütteldorf" },
+                    { value: "Wolfersberg", text: "Wolfersberg" },
+                    { value: "Hadersdorf-Weidlingau", text: "Hadersdorf-Weidlingau" },
+                    { value: "Stadthalle", text: "Stadthalle" },
+                    { value: "Reithofferplatz", text: "Reithofferplatz" },
+                    { value: "Fünfhaus-Westbahnhof", text: "Fünfhaus-Westbahnhof" },
+                    { value: "Sechshaus", text: "Sechshaus" },
+                    { value: "Rudolfsheim-Braunhirschen", text: "Rudolfsheim-Braunhirschen" },
+                    { value: "Rauscherplatz", text: "Rauscherplatz" },
+                    { value: "Schmelz", text: "Schmelz" },
+                    { value: "Neulerchenfeld", text: "Neulerchenfeld" },
+                    { value: "Ludo-Hartmann-Platz", text: "Ludo-Hartmann-Platz" },
+                    { value: "Herbststraße-Vorortelinie", text: "Herbststraße-Vorortelinie" },
+                    { value: "Alt-Ottakring", text: "Alt-Ottakring" },
+                    { value: "Wilhelminenstraße", text: "Wilhelminenstraße" },
+                    { value: "Sandleiten", text: "Sandleiten" },
+                    { value: "Joachimsthaler-Platz", text: "Joachimsthaler-Platz" },
+                    { value: "Wilhelminenspital", text: "Wilhelminenspital" },
+                    { value: "Wilhelminenberg", text: "Wilhelminenberg" },
+                    { value: "Richard Wagner-Platz", text: "Richard Wagner-Platz" },
+                    { value: "Dornerplatz", text: "Dornerplatz" },
+                    { value: "Alt-Hernals", text: "Alt-Hernals" },
+                    { value: "Äußere Hernalser Hauptstraße", text: "Äußere Hernalser Hauptstraße" },
+                    { value: "Alszeile", text: "Alszeile" },
+                    { value: "Dornbach", text: "Dornbach" },
+                    { value: "Neuwaldegg", text: "Neuwaldegg" },
+                    { value: "Währinger Cottage", text: "Währinger Cottage" },
+                    { value: "Gentzgasse", text: "Gentzgasse" },
+                    { value: "Kreutzgasse", text: "Kreutzgasse" },
+                    { value: "Gersthof", text: "Gersthof" },
+                    { value: "Pötzleinsdorf", text: "Pötzleinsdorf" },
+                    { value: "Nußdorf-Kahlenbergerdorf", text: "Nußdorf-Kahlenbergerdorf" },
+                    { value: "Karl Marx-Hof", text: "Karl Marx-Hof" },
+                    { value: "Döblinger Hauptstraße", text: "Döblinger Hauptstraße" },
+                    { value: "Hohe Warte", text: "Hohe Warte" },
+                    { value: "Grinzing", text: "Grinzing" },
+                    { value: "Sievering", text: "Sievering" },
+                    { value: "In der Krim", text: "In der Krim" },
+                    { value: "Döblinger Cottage", text: "Döblinger Cottage" },
+                    { value: "Glanzing-Salmannsdorf", text: "Glanzing-Salmannsdorf" },
+                    { value: "Kapaunplatz", text: "Kapaunplatz" },
+                    { value: "Zwischenbrücken", text: "Zwischenbrücken" },
+                    { value: "Brigittaplatz", text: "Brigittaplatz" },
+                    { value: "Lorenz Müller-Gasse", text: "Lorenz Müller-Gasse" },
+                    { value: "Wallensteinstraße", text: "Wallensteinstraße" },
+                    { value: "Wexstraße", text: "Wexstraße" },
+                    { value: "Höchstädtplatz", text: "Höchstädtplatz" },
+                    { value: "Nordwestbahnhof", text: "Nordwestbahnhof" },
+                    { value: "Stammersdorf", text: "Stammersdorf" },
+                    { value: "Stammersdorf-Brünnerstraße", text: "Stammersdorf-Brünnerstraße" },
+                    { value: "Hirschfeld", text: "Hirschfeld" },
+                    { value: "Nordrandsiedlung", text: "Nordrandsiedlung" },
+                    { value: "Großfeldsiedlung", text: "Großfeldsiedlung" },
+                    { value: "Leopoldau", text: "Leopoldau" },
+                    { value: "Leopoldau Straße-Siemensstraße", text: "Leopoldau Straße-Siemensstraße" },
+                    { value: "Gaswerk Leopoldau", text: "Gaswerk Leopoldau" },
+                    { value: "Schotterfeld", text: "Schotterfeld" },
+                    { value: "Siedlung Siemensstraße", text: "Siedlung Siemensstraße" },
+                    { value: "Groß-Jedlersdorf", text: "Groß-Jedlersdorf" },
+                    { value: "Jochbergen", text: "Jochbergen" },
+                    { value: "Strebersdorf", text: "Strebersdorf" },
+                    { value: "Strebersdorf-Prager Straße", text: "Strebersdorf-Prager Straße" },
+                    { value: "Autokader", text: "Autokader" },
+                    { value: "Schwarzlackenau", text: "Schwarzlackenau" },
+                    { value: "Neu-Jedlesee", text: "Neu-Jedlesee" },
+                    { value: "Alt-Jedlesee", text: "Alt-Jedlesee" },
+                    { value: "Koloniestraße", text: "Koloniestraße" },
+                    { value: "Shuttleworthstraße", text: "Shuttleworthstraße" },
+                    { value: "Floridsdorf-Brünnerstraße", text: "Floridsdorf-Brünnerstraße" },
+                    { value: "Floridsdorf-am Spitz", text: "Floridsdorf-am Spitz" },
+                    { value: "Donaufeld", text: "Donaufeld" },
+                    { value: "Donaufeld-Leopoldauer Straße", text: "Donaufeld-Leopoldauer Straße" },
+                    { value: "Donaufelder Gärtnergebiet", text: "Donaufelder Gärtnergebiet" },
+                    { value: "Mühlschüttel", text: "Mühlschüttel" },
+                    { value: "Bruckhaufen", text: "Bruckhaufen" },
+                    { value: "Industriegelände-Bahndreieck", text: "Industriegelände-Bahndreieck" },
+                    { value: "Süßenbrunn", text: "Süßenbrunn" },
+                    { value: "Breitenlee", text: "Breitenlee" },
+                    { value: "Neu-Eßling", text: "Neu-Eßling" },
+                    { value: "Schafflerhof", text: "Schafflerhof" },
+                    { value: "Flugfeld Aspern", text: "Flugfeld Aspern" },
+                    { value: "Kriegerheimstätten-Lackenjöchl", text: "Kriegerheimstätten-Lackenjöchl" },
+                    { value: "Breitenleer Stadtrandsiedlung", text: "Breitenleer Stadtrandsiedlung" },
+                    { value: "Kagran", text: "Kagran" },
+                    { value: "Eipeldauer Straße", text: "Eipeldauer Straße" },
+                    { value: "An der oberen Alten Donau", text: "An der oberen Alten Donau" },
+                    { value: "Kaisermühlen", text: "Kaisermühlen" },
+                    { value: "Lettenhaufen", text: "Lettenhaufen" },
+                    { value: "Zentrum Kagran", text: "Zentrum Kagran" },
+                    { value: "Freihof-Siedlung", text: "Freihof-Siedlung" },
+                    { value: "Wohngebiet Neu-Kagran", text: "Wohngebiet Neu-Kagran" },
+                    { value: "Industriegebiet Neu-Kagran", text: "Industriegebiet Neu-Kagran" },
+                    { value: "Neuhaufen", text: "Neuhaufen" },
+                    { value: "Mühlgrund-Neu-Stadlau", text: "Mühlgrund-Neu-Stadlau" },
+                    { value: "Stadlau", text: "Stadlau" },
+                    { value: "Hirschstetten", text: "Hirschstetten" },
+                    { value: "Plankenmais", text: "Plankenmais" },
+                    { value: "Neu-Straßenäcker", text: "Neu-Straßenäcker" },
+                    { value: "Aspern", text: "Aspern" },
+                    { value: "Spargelfeld", text: "Spargelfeld" },
+                    { value: "Wulzendorf", text: "Wulzendorf" },
+                    { value: "Biberhaufen", text: "Biberhaufen" },
+                    { value: "Eßling-Im Neuriß", text: "Eßling-Im Neuriß" },
+                    { value: "Eßling", text: "Eßling" },
+                    { value: "Englisch Feld", text: "Englisch Feld" },
+                    { value: "Industriegelände Erzherzog Karl-Straße", text: "Industriegelände Erzherzog Karl-Straße" },
+                    { value: "Donaupark", text: "Donaupark" },
+                    { value: "Inzersdorf", text: "Inzersdorf" },
+                    { value: "Neu-Erlaa-Neustift", text: "Neu-Erlaa-Neustift" },
+                    { value: "Schwarze Haide", text: "Schwarze Haide" },
+                    { value: "In der Wiesen", text: "In der Wiesen" },
+                    { value: "Siebenhirten", text: "Siebenhirten" },
+                    { value: "Industriezentrum Liesing", text: "Industriezentrum Liesing" },
+                    { value: "Atzgersdorf", text: "Atzgersdorf" },
+                    { value: "Industriegelände Breitenfurter Straße", text: "Industriegelände Breitenfurter Straße" },
+                    { value: "Steinberg", text: "Steinberg" },
+                    { value: "Zentrum Liesing", text: "Zentrum Liesing" },
+                    { value: "Atzgersdorf-West", text: "Atzgersdorf-West" },
+                    { value: "Rodaun", text: "Rodaun" },
+                    { value: "Mauerberg", text: "Mauerberg" },
+                    { value: "Mauer", text: "Mauer" },
+                    { value: "Kroißberg", text: "Kroißberg" },
+                    { value: "Kalksburg-Kaltenleutgeben", text: "Kalksburg-Kaltenleutgeben" },
+                    { value: "Blumental", text: "Blumental" },
+                    { value: "Draschegründe", text: "Draschegründe" },
+                    { value: "Wohnpark Alt-Erlaa", text: "Wohnpark Alt-Erlaa" }
+                  ];
+                  
+                  
+                          // Initialize TomSelect
+                          new TomSelect("#town-search", {
+                              options: towns,
+                              placeholder: "Search an area...",
+                              maxItems: 1,
+                              onChange: (value) => {
+                                  if (value) {
+                                      // Redirect to the analytics page for the selected town
+                                      window.location.href = `/analytics?town=${value}`;
+                                  }
+                              },
+                          });
+                      </script>
+                  
+                  </button>
                 </button>
 
-                <a href="#" class="text-sm/6 font-semibold text-gray-900">View our models &
-                  research<span aria-hidden="true">→</span></a>
               </div>
               <p class="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">Introducing <b
                   class="text-gray-700">The Zuhause Project</b>, a 501(c)(3)-backed project
                 to unite the people of Vienna in the fight for a housing & city development approach
                 that encourages integration, reduces the wealth gap, and promotes socioeconomic
                 equality.<br><br>
-                The <b class="text-gray-700"> Zuhause Platform</b> platform proposes research-backed
-                solutions to housing & development, economic modeling and social inequality data
-                analytics, and raises awareness by connecting students to the latest journal publishings in the field.
-                <br><br>
+
                 <b class="text-gray-700"> Zuhause : </b> "at home" (German)
               </p>
 
               <div class="py-2">
-                <a href="#sponsors">
+                <a href="#mission">
                   <div class="arrow bounce"></div>
                 </a>
               </div>
@@ -141,33 +411,7 @@
 
             <!-- Content section -->
     <div class="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
-      <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-        <h2 class="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Our mission</h2>
-        <div class="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
-          <div class="lg:w-full lg:max-w-2xl lg:flex-auto">
-            <p class="text-xl/8 text-gray-600"> to unite the people of Vienna in the fight for a housing & city development approach
-              that encourages integration, reduces the wealth gap, and promotes socioeconomic
-              equality.</p>
-            <p class="mt-10 max-w-xl text-base/7 text-gray-700">Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae sed turpis id.</p>
-          </div>
-          <div class="lg:flex lg:flex-auto lg:justify-center">
-            <dl class="w-64 space-y-8 xl:w-80">
-              <div class="flex flex-col-reverse gap-y-4">
-                <dt class="text-base/7 text-gray-600">Transactions every 24 hours</dt>
-                <dd class="text-5xl font-semibold tracking-tight text-gray-900">44 million</dd>
-              </div>
-              <div class="flex flex-col-reverse gap-y-4">
-                <dt class="text-base/7 text-gray-600">Assets under holding</dt>
-                <dd class="text-5xl font-semibold tracking-tight text-gray-900">$119 trillion</dd>
-              </div>
-              <div class="flex flex-col-reverse gap-y-4">
-                <dt class="text-base/7 text-gray-600">New users annually</dt>
-                <dd class="text-5xl font-semibold tracking-tight text-gray-900">46,000</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </div>
+     
 
         <div class="mt-20 sm:mt-24 md:mx-auto px-6 md:max-w-3xl lg:mt-0 lg:w-screen">
 
@@ -204,6 +448,37 @@
       <div class="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32"></div>
     </div>
 
+
+    <div class="mx-auto max-w-5xl mt-24">
+      <h2 id="mission" class="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Our mission</h2>
+      <div class="mt-4 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
+        <div class="lg:w-full lg:max-w-2xl lg:flex-auto">
+            <p class="mt-2 max-w-xl text-base/7 text-gray-700">to unite the people of Vienna in the fight for a housing & city development approach
+              that encourages integration, reduces the wealth gap, and promotes socioeconomic
+              equality. </p>
+
+          <p class="mt-10 max-w-xl text-base/7 text-gray-700">Our work at Zuhause is to bring researchers, citizens, and student and community leaders together. We are a hub for prominent research & journal publications, manage and operate a data dashboard that offers deep insights into Vienna's cultural makeup and migration patterns. We track diversity and quantify it with population statistics across 243 distinct areas / communities in Vienna, Austria. </p>
+        </div>
+        <div class="lg:flex lg:flex-auto lg:justify-center">
+          <dl class="w-64 space-y-8 xl:w-80">
+            <div class="flex flex-col-reverse gap-y-4">
+              <dt class="text-base/7 text-gray-600">Communities tracked in Vienna, Austria</dt>
+              <dd class="text-5xl font-semibold tracking-tight text-gray-900">243 areas</dd>
+            </div>
+            <div class="flex flex-col-reverse gap-y-4">
+              <dt class="text-base/7 text-gray-600">Data spanning forty years</dt>
+              <dd class="text-5xl font-semibold tracking-tight text-gray-900">40 years</dd>
+            </div>
+            <div class="flex flex-col-reverse gap-y-4">
+              <dt class="text-base/7 text-gray-600">Data measuring Vienna diversity and housing</dt>
+              <dd class="text-5xl font-semibold tracking-tight text-gray-900">4,131 points </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+
     <div id="sponsors" class="bg-white py-24 sm:py-32">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 class="text-center text-lg/8 font-semibold text-gray-900">Powered by nonprofits and innovators </h2>
@@ -227,10 +502,11 @@
       </div>
     </div>
 
+
     <div class="bg-white py-24 sm:py-32">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2 class="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Zuhause Blog</h2>
+          <h2  id="blog" class="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Zuhause Blog</h2>
           <p class="mt-2 text-lg/8 text-gray-600">Learn about economic development, the City of Vienna's approach to
             housing, and its consequences for racial and socioeconomic inequality. </p>
         </div>
@@ -352,6 +628,9 @@
       </div>
     </div>
 
+
+     
+  
 
   </div>
 

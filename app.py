@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 import pandas as pd
 import jsonify 
+import json
+import requests
 
 app = Flask(__name__)
 
@@ -12,31 +14,59 @@ def home():
 def policies():
     return render_template('policies.html')
 
-@app.route('/history')
-def history():
-    return render_template('history.html')
+@app.route('/card')
+def card():
+    return render_template('card.html')
     
 @app.route('/api/housing_data')
 def housing_data():
     data = pd.read_json('data/housing_data.json')
     return jsonify(data.to_dict(orient="records"))
 
+from flask import Flask, request, jsonify
+import json
+
 @app.route('/analytics')
 def analytics():
-    return render_template('analytics.html')
+    # Load the JSON data
+    json_file_path = "/Users/georgemccain/Desktop/tojner2/data/wirel_typology.json"
+    try:
+        with open(json_file_path, "r") as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        return jsonify({"error": "JSON file not found"}), 404
+    except json.JSONDecodeError:
+        return jsonify({"error": "Error decoding JSON file"}), 500
 
-@app.route('/directory')
-def directory():
-    return render_template('directory.html')
+    # Access the "religion" sheet
+    religion_data = data.get("typology", [])
 
-@app.route('/impact')
-def impact():
-    return render_template('impact.html')
+    # Get the 'town' query parameter
+    town_query = request.args.get("town")
+    if not town_query:
+        return jsonify({"error": "No 'town' parameter provided"}), 400
+
+    # Find the data for the specified town
+    town_data = next((entry for entry in religion_data if town_query in entry["area"]), None)
+    # Return the result
+    return render_template("analytics.html", town_data=town_data, town_name=town_query)
+
+@app.route('/history')
+def history():
+    return render_template('history.html')
+
+@app.route('/challenges')
+def challenges():
+    return render_template('challenges.html')
+
 
 @app.route('/research')
 def research():
     return render_template('research.html')
 
+@app.route('/join-movement')
+def join_movement():
+    return render_template('join_movement.html')
 
 @app.route('/publications')
 def publications():
@@ -239,10 +269,6 @@ def publications():
 ]
     return render_template('publications.html', publications=publications)
 
-
-@app.route('/card')
-def card():
-    return render_template('card.html')
 
 if __name__ == '__main__':
     app.run(port=8080)
