@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vienna Housing Awareness</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
 </head>
 <style>
   .arrow {
@@ -51,80 +53,69 @@
 
   <div class="bg-white">
     <!-- Navbar -->
-<nav class="bg-indigo-600 text-white shadow-lg">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16 items-center">
-      <!-- Logo -->
-      <div class="flex gap-2">
-       
-        <div>
-          <img class="h-11" src="static/assets/img/whitelogo.png"
-          alt="The Zuhause Project">
-        </div>
-        <div>
-          <h1 id="title" class="text-2xl mt-2 font-mono font-bold">  Zuhause  </h1>
+    <nav class="bg-indigo-600 text-white shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <!-- Logo -->
+          <div class="flex gap-2">
+           
+            <a href="/">
 
+              <img class="h-11" src="static/assets/img/whitelogo.png" alt="The Zuhause Project">
+            </a>
+            <div>
+    
+            </div>
+           
+    
+                </div>
+          <!-- Links -->
+          <div class="hidden md:flex space-x-6 font-semibold text-pretty ">
+            <a href="/analytics" class="hover:text-gray-200">Analytics</a>
+            <a href="/history" class="hover:text-gray-200">History</a>
+            <a href="#blog" class="hover:text-gray-200">Blog</a>
+            <a href="/research" class="hover:text-gray-200">Economic Research</a>
+            <a href="/publications" class="hover:text-gray-200">Publications & Work</a>
+          </div>
+          <!-- Mobile Menu Button -->
+          <div class="-mr-2 flex md:hidden">
+            <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-200 focus:outline-none">
+              <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+              </svg>
+            </button>
+          </div>
         </div>
-       
+      </div>
+    </nav>
+
+  <div class="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20">
+    <div class="mx-auto max-w-7xl pb-24 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-20">
+      <div class="lg:pt-4">
+        <div class="mx-auto max-w-2xl">
+          <div class="max-w-lg">
+            <header class="text-black flex gap-2">
+              <img class="h-11" src="https://cdn-icons-png.flaticon.com/512/3740/3740762.png" alt="The Zuhause Project">
+              <h1 id="title" class="text-2xl mt-2 font-bold">The Zuhause Project</h1>
+            </header>
+            <div class="mt-4">
+
 
             </div>
-      <!-- Links -->
-      <div class="hidden md:flex space-x-6 font-semibold text-pretty ">
-        <a href="/analytics?town=Altstadt-Ost" class="hover:text-gray-200">Analytics</a>
-        <a href="/history" class="hover:text-gray-200">History</a>
-        <a href="#blog" class="hover:text-gray-200">Blog</a>
-        <a href="/research" class="hover:text-gray-200">Economic Research</a>
-        <a href="/publications" class="hover:text-gray-200">Publications & Work</a>
-      </div>
-      <!-- Mobile Menu Button -->
-      <div class="-mr-2 flex md:hidden">
-        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-200 focus:outline-none">
-          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-            <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-</nav>
-
-    <div class="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20">
-      <div class="mx-auto max-w-7xl pb-24 sm:pb-32 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:py-20">
-        <div class="lg:pt-4">
-          <div class="mx-auto max-w-2xl">
-            <div class="max-w-lg">
-              <header class="text-black flex gap-2">
-                <img class="h-11" src="https://cdn-icons-png.flaticon.com/512/3740/3740762.png"
-                  alt="The Zuhause Project">
-                <h1 id="title" class="text-2xl mt-2 font-bold">The Zuhause Project</h1>
-              </header>
-              <div class="mt-4">
+            <h1 class="mt-10 text-pretty text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+              A solution to Vienna's housing problems that puts socioeconomic and racial equality
+              first. </h1>
+            <div class="mt-10 flex items-center gap-x-6">
+              <select id="town-search" class="w-full border bg-indigo-600 p-4 rounded-lg"></select>
 
 
-              </div>
-              <h1 class="mt-10 text-pretty text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                A solution to Vienna's housing problems that puts socioeconomic and racial equality
-                first. </h1>
-              <div class="mt-10 flex items-center gap-x-6">
-                              <select id="town-search" class="w-full border bg-indigo-600 p-4 px-4 py-2 rounded-lg"></select>
 
-                          
-                          <!DOCTYPE html>
-                  <html lang="en">
-                  <head>
-                      <meta charset="UTF-8">
-                      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                      <title>Zahause Analytics</title>
-                      <script src="https://cdn.tailwindcss.com"></script>
-                      <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
-                      <script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
-                  </head>
-                  <body class="bg-gray-100 text-gray-800">
-                      
-                  
-                      <script>
-                          // Example list of towns (Replace this with an API call if needed)
-                          const towns = [
+              <body class="bg-gray-100 text-gray-800">
+
+
+                <script>
+                  // Example list of towns (Replace this with an API call if needed)
+                  const towns = [
                     { value: "Altstadt-Ost", text: "Altstadt-Ost" },
                     { value: "Stubenviertel", text: "Stubenviertel" },
                     { value: "Opernviertel", text: "Opernviertel" },
@@ -369,49 +360,49 @@
                     { value: "Draschegründe", text: "Draschegründe" },
                     { value: "Wohnpark Alt-Erlaa", text: "Wohnpark Alt-Erlaa" }
                   ];
-                  
-                  
-                          // Initialize TomSelect
-                          new TomSelect("#town-search", {
-                              options: towns,
-                              placeholder: "Search an area...",
-                              maxItems: 1,
-                              onChange: (value) => {
-                                  if (value) {
-                                      // Redirect to the analytics page for the selected town
-                                      window.location.href = `/analytics?town=${value}`;
-                                  }
-                              },
-                          });
-                      </script>
-                  
-                  </button>
+
+
+                  // Initialize TomSelect
+                  new TomSelect("#town-search", {
+                    options: towns,
+                    placeholder: "Search an area...",
+                    maxItems: 1,
+                    onChange: (value) => {
+                      if (value) {
+                        // Redirect to the analytics page for the selected town
+                        window.location.href = `/analytics?town=${value}`;
+                      }
+                    },
+                  });
+                </script>
+
+                </button>
                 </button>
 
-              </div>
-              <p class="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">Introducing <b
-                  class="text-gray-700">The Zuhause Project</b>, a 501(c)(3)-backed project
-                to unite the people of Vienna in the fight for a housing & city development approach
-                that encourages integration, reduces the wealth gap, and promotes socioeconomic
-                equality.<br><br>
-
-                <b class="text-gray-700"> Zuhause : </b> "at home" (German)
-              </p>
-
-              <div class="py-2">
-                <a href="#mission">
-                  <div class="arrow bounce"></div>
-                </a>
-              </div>
-
-
             </div>
+            <p class="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">Introducing <b
+                class="text-gray-700">The Zuhause Project</b>, a 501(c)(3)-backed project
+              to unite the people of Vienna in the fight for a housing & city development approach
+              that encourages integration, reduces the wealth gap, and promotes socioeconomic
+              equality.<br><br>
+
+              <b class="text-gray-700"> Zuhause : </b> "at home" (German)
+            </p>
+
+            <div class="py-2">
+              <a href="#mission">
+                <div class="arrow bounce"></div>
+              </a>
+            </div>
+
+
           </div>
         </div>
+      </div>
 
-            <!-- Content section -->
-    <div class="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
-     
+      <!-- Content section -->
+      <div class="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
+
 
         <div class="mt-20 sm:mt-24 md:mx-auto px-6 md:max-w-3xl lg:mt-0 lg:w-screen">
 
@@ -450,14 +441,20 @@
 
 
     <div class="mx-auto max-w-5xl mt-24">
-      <h2 id="mission" class="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Our mission</h2>
+      <h2 id="mission" class="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Our mission
+      </h2>
       <div class="mt-4 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
         <div class="lg:w-full lg:max-w-2xl lg:flex-auto">
-            <p class="mt-2 max-w-xl text-base/7 text-gray-700">to unite the people of Vienna in the fight for a housing & city development approach
-              that encourages integration, reduces the wealth gap, and promotes socioeconomic
-              equality. </p>
+          <p class="mt-2 max-w-xl text-base/7 text-gray-700">to unite the people of Vienna in the fight for a housing &
+            city development approach
+            that encourages integration, reduces the wealth gap, and promotes socioeconomic
+            equality. </p>
 
-          <p class="mt-10 max-w-xl text-base/7 text-gray-700">Our work at Zuhause is to bring researchers, citizens, and student and community leaders together. We are a hub for prominent research & journal publications, manage and operate a data dashboard that offers deep insights into Vienna's cultural makeup and migration patterns. We track diversity and quantify it with population statistics across 243 distinct areas / communities in Vienna, Austria. </p>
+          <p class="mt-10 max-w-xl text-base/7 text-gray-700">Our work at Zuhause is to bring researchers, citizens, and
+            student and community leaders together. We are a hub for prominent research & journal publications, manage
+            and operate a data dashboard that offers deep insights into Vienna's cultural makeup and migration patterns.
+            We track diversity and quantify it with population statistics across 243 distinct areas / communities in
+            Vienna, Austria. </p>
         </div>
         <div class="lg:flex lg:flex-auto lg:justify-center">
           <dl class="w-64 space-y-8 xl:w-80">
@@ -506,7 +503,8 @@
     <div class="bg-white py-24 sm:py-32">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2  id="blog" class="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Zuhause Blog</h2>
+          <h2 id="blog" class="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Zuhause Blog
+          </h2>
           <p class="mt-2 text-lg/8 text-gray-600">Learn about economic development, the City of Vienna's approach to
             housing, and its consequences for racial and socioeconomic inequality. </p>
         </div>
@@ -629,19 +627,27 @@
     </div>
 
 
-     
-  
-
-  </div>
-
-
-
-  </div>
-
-
-  <!-- Now is the time to fight for a housing solution in Vienna that puts integration & equality first. 60% of Vienna's residents live in public housing, and not by choice. The latest economic reports also demonstrate that 18% of the Austrian population (around 1.5 million people) are at risk of poverty or marginalization. -->
-
 
 </body>
+<footer class="border-t border-gray-200 mt-8 mb-6 pt-4 text-center text-sm text-gray-500">
+  <div class="flex justify-center space-x-4">
+    <span>&copy; 2024 Zuhause Project</span>
+    <a href="https://www.wirel-project.at/maps/#religion/catholics/2011/48.22035/16.37965/11"
+      class="hover:underline">Source</a>
+    <a href="https://www.codeitforwardny.org/" class="hover:underline">Code it Forward</a>
+  </div>
+</footer>
+
+
+
+</div>
+
+
+
+</div>
+
+
+<!-- Now is the time to fight for a housing solution in Vienna that puts integration & equality first. 60% of Vienna's residents live in public housing, and not by choice. The latest economic reports also demonstrate that 18% of the Austrian population (around 1.5 million people) are at risk of poverty or marginalization. -->
+
 
 </html>
